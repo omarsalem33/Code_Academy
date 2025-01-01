@@ -39,17 +39,17 @@ namespace CodeAcademy.Data.Config
         {
             return new List<Section>
             {
-                new Section { Id = 1, Name = "S_MA1"},
-                new Section { Id = 2, Name = "S_MA2"},
-                new Section { Id = 3, Name = "S_PH1"},
-                new Section { Id = 4, Name = "S_PH2"},
-                new Section { Id = 5, Name = "S_CH1"},
-                new Section { Id = 6, Name = "S_CH2"},
-                new Section { Id = 7, Name = "S_BI1"},
-                new Section { Id = 8, Name = "S_BI2"},
-                new Section { Id = 9, Name = "S_CS1"},
-                new Section { Id = 10, Name = "S_CS2"},
-                new Section { Id = 11, Name = "S_CS3"}
+                new Section { Id = 1, Name = "S_MA1", CourseId = 1, InsId = 1},
+                new Section { Id = 2, Name = "S_MA2", CourseId = 1, InsId = 2},
+                new Section { Id = 3, Name = "S_PH1", CourseId = 2, InsId = 1},
+                new Section { Id = 4, Name = "S_PH2", CourseId = 2, InsId = 3},
+                new Section { Id = 5, Name = "S_CH1", CourseId = 3, InsId =2},
+                new Section { Id = 6, Name = "S_CH2", CourseId = 3, InsId = 3},
+                new Section { Id = 7, Name = "S_BI1", CourseId = 4, InsId = 4},
+                new Section { Id = 8, Name = "S_BI2", CourseId = 4, InsId = 5},
+                new Section { Id = 9, Name = "S_CS1", CourseId = 5, InsId = 4},
+                new Section { Id = 10, Name = "S_CS2", CourseId = 5, InsId = 5},
+                new Section { Id = 11, Name = "S_CS3", CourseId = 5, InsId = 4}
             };
         }
     }
