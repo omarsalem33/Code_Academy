@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CodeAcademy.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250101100822_Add Reletion between Course and Sections(1-M)")]
-    partial class AddReletionbetweenCourseandSections1M
+    [Migration("20250101101516_Add Relation betwwen Course and Sections(1-M)")]
+    partial class AddRelationbetwwenCourseandSections1M
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -316,67 +316,78 @@ namespace CodeAcademy.Migrations
                         new
                         {
                             Id = 1,
-                            CourseId = 0,
+                            CourseId = 1,
+                            InsId = 1,
                             Name = "S_MA1"
                         },
                         new
                         {
                             Id = 2,
-                            CourseId = 0,
+                            CourseId = 1,
+                            InsId = 2,
                             Name = "S_MA2"
                         },
                         new
                         {
                             Id = 3,
-                            CourseId = 0,
+                            CourseId = 2,
+                            InsId = 1,
                             Name = "S_PH1"
                         },
                         new
                         {
                             Id = 4,
-                            CourseId = 0,
+                            CourseId = 2,
+                            InsId = 3,
                             Name = "S_PH2"
                         },
                         new
                         {
                             Id = 5,
-                            CourseId = 0,
+                            CourseId = 3,
+                            InsId = 2,
                             Name = "S_CH1"
                         },
                         new
                         {
                             Id = 6,
-                            CourseId = 0,
+                            CourseId = 3,
+                            InsId = 3,
                             Name = "S_CH2"
                         },
                         new
                         {
                             Id = 7,
-                            CourseId = 0,
+                            CourseId = 4,
+                            InsId = 4,
                             Name = "S_BI1"
                         },
                         new
                         {
                             Id = 8,
-                            CourseId = 0,
+                            CourseId = 4,
+                            InsId = 5,
                             Name = "S_BI2"
                         },
                         new
                         {
                             Id = 9,
-                            CourseId = 0,
+                            CourseId = 5,
+                            InsId = 4,
                             Name = "S_CS1"
                         },
                         new
                         {
                             Id = 10,
-                            CourseId = 0,
+                            CourseId = 5,
+                            InsId = 5,
                             Name = "S_CS2"
                         },
                         new
                         {
                             Id = 11,
-                            CourseId = 0,
+                            CourseId = 5,
+                            InsId = 4,
                             Name = "S_CS3"
                         });
                 });

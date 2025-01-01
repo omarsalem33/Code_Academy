@@ -19,5 +19,7 @@ namespace CodeAcademy.Entities
         public Course Course { get; set; }
 
         public Instructor? Instructor { get; set; }
+
+        public ICollection<Student> Students { get; set; } = new List<Student>();
     }
 }

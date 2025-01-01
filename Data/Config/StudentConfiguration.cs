@@ -24,6 +24,10 @@ namespace CodeAcademy.Data.Config
             .HasColumnType("VARCHAR")
             .HasMaxLength(50).IsRequired();
 
+            builder.HasMany(x => x.Sections)
+                .WithMany(x => x.Students)
+                .UsingEntity<Enrollment>();
+
             builder.ToTable("Students");
 
             builder.HasData(LoadStudents());
