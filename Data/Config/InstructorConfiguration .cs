@@ -24,6 +24,11 @@ namespace CodeAcademy.Data.Config
                 .HasColumnType("VARCHAR")
                 .HasMaxLength(50).IsRequired();
 
+            builder.HasOne(x => x.Office)
+                .WithOne(x => x.Instructor)
+                .HasForeignKey<Instructor>(x => x.OfficeId)
+                .IsRequired(false);
+
             builder.ToTable("Instructors");
 
             builder.HasData(LoadInstructors());
