@@ -12,6 +12,8 @@ namespace CodeAcademy.Data
                 .AddJsonFile("appsettings.json")
                 .Build();
             var connectionString = config.GetSection("ConnectionStrings:DefaultConnection").Value;
+
+            optionsBuilder.UseSqlServer(connectionString);
         }
     }
 }
