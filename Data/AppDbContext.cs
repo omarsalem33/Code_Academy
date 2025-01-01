@@ -13,7 +13,7 @@ namespace CodeAcademy.Data
         public DbSet<Section> Sections { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<Enrollment> Enrollments { get; set; }
-        public DbSet<SectionSchedule> SectionSchedules { get; set; }    
+        
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
