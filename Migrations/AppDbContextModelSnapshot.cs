@@ -658,6 +658,21 @@ namespace CodeAcademy.Migrations
                         });
                 });
 
+            modelBuilder.Entity("ScheduleSection", b =>
+                {
+                    b.Property<int>("SchedulesId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SectionsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("SchedulesId", "SectionsId");
+
+                    b.HasIndex("SectionsId");
+
+                    b.ToTable("ScheduleSection");
+                });
+
             modelBuilder.Entity("CodeAcademy.Entities.Enrollment", b =>
                 {
                     b.HasOne("CodeAcademy.Entities.Section", "Section")
@@ -714,6 +729,21 @@ namespace CodeAcademy.Migrations
                     b.HasOne("CodeAcademy.Entities.Section", null)
                         .WithMany("SectionSchedules")
                         .HasForeignKey("SectionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ScheduleSection", b =>
+                {
+                    b.HasOne("CodeAcademy.Entities.Schedule", null)
+                        .WithMany()
+                        .HasForeignKey("SchedulesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CodeAcademy.Entities.Section", null)
+                        .WithMany()
+                        .HasForeignKey("SectionsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
