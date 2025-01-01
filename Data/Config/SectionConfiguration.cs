@@ -17,18 +17,27 @@ namespace CodeAcademy.Data.Config
             builder.Property(x => x.Id).ValueGeneratedNever();
 
             builder.Property(x => x.Name)
-                .HasColumnType("VARCHAR")
-                .HasMaxLength(255).IsRequired();
+              .HasColumnType("VARCHAR")
+              .HasMaxLength(255).IsRequired();
+
+            builder.HasOne(x => x.Course)
+                .WithMany(x => x.Sections)
+                .HasForeignKey(x => x.CourseId)
+                .IsRequired();
 
             builder.HasOne(x => x.Instructor)
                 .WithMany(x => x.Sections)
                 .HasForeignKey(x => x.InsId)
                 .IsRequired(false);
 
-            builder.HasOne(x => x.Course)
+
+            builder.HasMany(c => c.Schedules)
                 .WithMany(x => x.Sections)
-                .HasForeignKey(x => x.CourseId)
-                .IsRequired();
+                .UsingEntity<SectionSchedule>();
+
+            builder.HasMany(c => c.Students)
+                .WithMany(x => x.Sections)
+                .UsingEntity<Enrollment>();
 
             builder.HasData(LoadSections());
 

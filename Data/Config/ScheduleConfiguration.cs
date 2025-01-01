@@ -20,9 +20,9 @@ namespace CodeAcademy.Data.Config
                 .HasColumnType("VARCHAR")
                 .HasMaxLength(50).IsRequired();
 
-            builder.HasMany(c => c.Sections)
-               .WithMany(x => x.Schedules)
-               .UsingEntity<SectionSchedule>();
+            //builder.HasMany(c => c.Sections)
+            //   .WithMany(x => x.Schedules)
+            //   .UsingEntity<SectionSchedule>();
 
             builder.ToTable("Schedules");
 
