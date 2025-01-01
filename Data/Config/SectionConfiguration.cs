@@ -25,6 +25,11 @@ namespace CodeAcademy.Data.Config
                 .HasForeignKey(x => x.InsId)
                 .IsRequired(false);
 
+            builder.HasOne(x => x.Course)
+                .WithMany(x => x.Sections)
+                .HasForeignKey(x => x.CourseId)
+                .IsRequired();
+
             builder.HasData(LoadSections());
 
             builder.ToTable("Sections");

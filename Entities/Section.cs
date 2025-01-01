@@ -14,6 +14,10 @@ namespace CodeAcademy.Entities
 
         public int? InsId { get; set; }
 
+        public int CourseId { get; set; }
+
+        public Course Course { get; set; }
+
         public Instructor? Instructor { get; set; }
     }
 }
