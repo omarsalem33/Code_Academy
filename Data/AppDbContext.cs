@@ -10,6 +10,7 @@ namespace CodeAcademy.Data
         public DbSet<Instructor> Instructors { get; set; }
         public DbSet<Office> Offices { get; set; }
         public DbSet<Schedule> Schedules { get; set; }
+        public DbSet<Section> Sections { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
