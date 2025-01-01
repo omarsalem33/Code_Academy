@@ -20,6 +20,11 @@ namespace CodeAcademy.Data.Config
                 .HasColumnType("VARCHAR")
                 .HasMaxLength(255).IsRequired();
 
+            builder.HasOne(x => x.Instructor)
+                .WithMany(x => x.Sections)
+                .HasForeignKey(x => x.InsId)
+                .IsRequired(false);
+
             builder.HasData(LoadSections());
 
             builder.ToTable("Sections");
