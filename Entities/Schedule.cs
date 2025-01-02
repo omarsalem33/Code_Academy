@@ -1,10 +1,12 @@
-﻿namespace CodeAcademy.Entities
+﻿using CodeAcademy.Enums;
+
+namespace CodeAcademy.Entities
 {
     public class Schedule
     {
         public int Id { get; set; }
 
-        public string Title { get; set; }
+        public ScheduleEnum Title { get; set; }
 
         public bool SUN { get; set; }
         
