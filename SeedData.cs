@@ -102,16 +102,18 @@ namespace CodeAcademy
             new Enrollment { SectionId = 10, ParticpantId = 10 }
         };
 
-        //public static List<MultipleChoiceQuiz> LoadMultipleChoiceQuizzes() => new()
-        //{
-        //   new () { Id = 3, Title = "Chemistry Basics", Course = LoadCourses().First(c => c.Id == 3), OptionA = "H2O", OptionB = "CO2", OptionC = "O2", OptionD = "H2SO4", CorrectAnswer = 'A' },
-        //   new () { Id = 4, Title = "Biology Terminology", Course = LoadCourses().First(c => c.Id == 4), OptionA = "Cell", OptionB = "Atom", OptionC = "Tissue", OptionD = "Organ", CorrectAnswer = 'C' }
-        //};
+        // Method to load data for MultipleChoiceQuiz
+        public static List<MultipleChoiceQuiz> LoadMultipleChoiceQuizzes() => new()
+        {
+           new () { Id = 3, Title = "Chemistry Basics", CourseId = 3, OptionA = "H2O", OptionB = "CO2", OptionC = "O2", OptionD = "H2SO4", CorrectAnswer = 'A' },
+           new () { Id = 4, Title = "Biology Terminology", CourseId =  4, OptionA = "Cell", OptionB = "Atom", OptionC = "Tissue", OptionD = "Organ", CorrectAnswer = 'C' }
+        };
 
-        //public static List<TrueAndFalseQuiz> LoadTrueAndFalseQuizzes() => new()
-        //{
-        //    new () { Id = 1, Title = "What is the first element on the periodic table?", Course = , CorrectAnswer = true },
-        //    new () { Id = 2, Title = "Physics Laws - True or False", Course = LoadCourses().First(c => c.Id == 2), CorrectAnswer = false },
-        //};
+        // Method to load data for TrueAndFalseQuiz
+        public static List<TrueAndFalseQuiz> LoadTrueAndFalseQuizzes() => new()
+        {
+            new () { Id = 3, Title = "What is the first element on the periodic table?", CourseId = 3, CorrectAnswer = true },
+            new () { Id = 4, Title = "Physics Laws - True or False", CourseId = 2, CorrectAnswer = false },
+        };
     }
 }

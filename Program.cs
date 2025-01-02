@@ -44,14 +44,14 @@ namespace CodeAcademy
                 {
                     context.Set<Enrollment>().AddRange(SeedData.LoadEnrollments());
                 }
-                //if (!await context.Set<TrueAndFalseQuiz>().AnyAsync())
-                //{
-                //    context.Set<TrueAndFalseQuiz>().AddRange(SeedData.LoadTrueAndFalseQuizzes());
-                //}
-                //if (!await context.Set<MultipleChoiceQuiz>().AnyAsync())
-                //{
-                //    context.Set<MultipleChoiceQuiz>().AddRange(SeedData.LoadMultipleChoiceQuizzes());
-                //}
+                if (!await context.Set<TrueAndFalseQuiz>().AnyAsync())
+                {
+                    context.Set<TrueAndFalseQuiz>().AddRange(SeedData.LoadTrueAndFalseQuizzes());
+                }
+                if (!await context.Set<MultipleChoiceQuiz>().AnyAsync())
+                {
+                    context.Set<MultipleChoiceQuiz>().AddRange(SeedData.LoadMultipleChoiceQuizzes());
+                }
                 await context.SaveChangesAsync();
             }
         }
