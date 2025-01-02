@@ -273,7 +273,7 @@ namespace CodeAcademy.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.ToTable("MultipleChoiceQuizes");
+                    b.ToTable("MultipleChoiceQuizes", (string)null);
                 });
 
             modelBuilder.Entity("CodeAcademy.Entities.TrueAndFalseQuiz", b =>
@@ -283,7 +283,7 @@ namespace CodeAcademy.Migrations
                     b.Property<bool>("CorrectAnswer")
                         .HasColumnType("bit");
 
-                    b.ToTable("TrueAndFalseQuizes");
+                    b.ToTable("TrueAndFalseQuizes", (string)null);
                 });
 
             modelBuilder.Entity("CodeAcademy.Entities.Enrollment", b =>
@@ -358,7 +358,7 @@ namespace CodeAcademy.Migrations
 
                             b1.HasKey("SectionId");
 
-                            b1.ToTable("Sections");
+                            b1.ToTable("Sections", (string)null);
 
                             b1.WithOwner()
                                 .HasForeignKey("SectionId");
