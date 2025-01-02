@@ -1,11 +1,6 @@
 ﻿using CodeAcademy.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CodeAcademy.Data.Config
 {
@@ -31,19 +26,6 @@ namespace CodeAcademy.Data.Config
 
             builder.ToTable("Instructors");
 
-            builder.HasData(LoadInstructors());
-        }
-
-        private static List<Instructor> LoadInstructors()
-        {
-            return new List<Instructor>
-            {
-                new Instructor { Id = 1, FName = "Ahmed", LName = "Abdullah", OfficeId = 1},
-                new Instructor { Id = 2, FName = "Yasmeen", LName = "Yasmeen", OfficeId = 2},
-                new Instructor { Id = 3, FName = "Khalid", LName = "Hassan", OfficeId = 3},
-                new Instructor { Id = 4, FName = "Nadia", LName = "Ali", OfficeId = 4},
-                new Instructor { Id = 5, FName = "Ahmed", LName = "Abdullah", OfficeId = 5},
-            };
         }
     }
 }

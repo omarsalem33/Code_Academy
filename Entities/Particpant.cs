@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CodeAcademy.Entities
+﻿namespace CodeAcademy.Entities
 {
-    public class Student
+    public class Particpant
     {
         public int Id { get; set; }
 
@@ -16,5 +10,4 @@ namespace CodeAcademy.Entities
 
         public ICollection<Section> Sections { get; set; } = new List<Section>();
     }
-
 }
