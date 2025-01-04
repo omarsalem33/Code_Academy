@@ -15,6 +15,7 @@ namespace CodeAcademy.Data
         public DbSet<Enrollment> Enrollments { get; set; }
         public DbSet<MultipleChoiceQuiz> MultipleChoiceQuizes { get; set; }
         public DbSet<TrueAndFalseQuiz> TrueAndFalseQuizes { get; set; }
+        public DbSet<Reviews> Reviews { get; set; } 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
