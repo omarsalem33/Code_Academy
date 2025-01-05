@@ -1,7 +1,7 @@
 ﻿
 namespace CodeAcademy.Entities
 {
-    public class Reviews
+    public class Review
     {
         public int Id { get; set; }
 

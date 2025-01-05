@@ -4,6 +4,7 @@ using CodeAcademy.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CodeAcademy.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250104105253_Add column HoursToComplete to Courses")]
+    partial class AddcolumnHoursToCompletetoCourses
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -380,27 +383,6 @@ namespace CodeAcademy.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.OwnsOne("DateRange", "DateRange", b1 =>
-                        {
-                            b1.Property<int>("SectionId")
-                                .HasColumnType("int");
-
-                            b1.Property<DateTime>("EndDate")
-                                .HasColumnType("DATE")
-                                .HasColumnName("EndDate");
-
-                            b1.Property<DateTime>("StartDate")
-                                .HasColumnType("DATE")
-                                .HasColumnName("StartDate");
-
-                            b1.HasKey("SectionId");
-
-                            b1.ToTable("Sections");
-
-                            b1.WithOwner()
-                                .HasForeignKey("SectionId");
-                        });
-
                     b.OwnsOne("TimeSlot", "TimeSlot", b1 =>
                         {
                             b1.Property<int>("SectionId")
@@ -423,9 +405,6 @@ namespace CodeAcademy.Migrations
                         });
 
                     b.Navigation("Course");
-
-                    b.Navigation("DateRange")
-                        .IsRequired();
 
                     b.Navigation("Instructor");
 

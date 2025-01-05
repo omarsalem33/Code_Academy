@@ -15,7 +15,7 @@ namespace CodeAcademy.Data
         public DbSet<Enrollment> Enrollments { get; set; }
         public DbSet<MultipleChoiceQuiz> MultipleChoiceQuizes { get; set; }
         public DbSet<TrueAndFalseQuiz> TrueAndFalseQuizes { get; set; }
-        public DbSet<Reviews> Reviews { get; set; } 
+        public DbSet<Review> Reviews { get; set; } 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -25,7 +25,8 @@ namespace CodeAcademy.Data
                 .Build();
             var connectionString = config.GetSection("ConnectionStrings:DefaultConnection").Value;
 
-            optionsBuilder.UseSqlServer(connectionString);
+            optionsBuilder.UseSqlServer(connectionString)// add log on console
+                .LogTo(Console.WriteLine,Microsoft.Extensions.Logging.LogLevel.Information);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

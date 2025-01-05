@@ -31,6 +31,12 @@ namespace CodeAcademy.Data.Config
                 ts.Property(p => p.EndTime).HasColumnType("time").HasColumnName("EndTime");
             });
 
+            builder.OwnsOne(x => x.DateRange, ts =>
+            {
+                ts.Property(p => p.StartDate).HasColumnType("DATE").HasColumnName("StartDate").IsRequired();
+                ts.Property(p => p.EndDate).HasColumnType("DATE").HasColumnName("EndDate").IsRequired();
+            });
+
             builder.HasOne(x => x.Schedule)
                 .WithMany(x => x.Sections)
                 .HasForeignKey(x => x.ScheduleId)
