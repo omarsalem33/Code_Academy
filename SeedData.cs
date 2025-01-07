@@ -90,15 +90,15 @@ namespace CodeAcademy
         // Method to load data for Enrollments
         public static List<Enrollment> LoadEnrollments() => new()
         {
-            new Enrollment { SectionId = 6, ParticpantId = 1 },
-            new Enrollment { SectionId = 6, ParticpantId = 2 },
-            new Enrollment { SectionId = 7, ParticpantId = 3 },
-            new Enrollment { SectionId = 7, ParticpantId = 4 },
-            new Enrollment { SectionId = 8, ParticpantId = 5 },
-            new Enrollment { SectionId = 8, ParticpantId = 6 },
-            new Enrollment { SectionId = 9, ParticpantId = 7 },
-            new Enrollment { SectionId = 9, ParticpantId = 8 },
-            new Enrollment { SectionId = 10, ParticpantId = 9 },
+            new Enrollment { SectionId = 1, ParticpantId = 1 },
+            new Enrollment { SectionId = 2, ParticpantId = 2 },
+            new Enrollment { SectionId = 3, ParticpantId = 3 },
+            new Enrollment { SectionId = 4, ParticpantId = 4 },
+            new Enrollment { SectionId = 5, ParticpantId = 5 },
+            new Enrollment { SectionId = 6, ParticpantId = 6 },
+            new Enrollment { SectionId = 7, ParticpantId = 7 },
+            new Enrollment { SectionId = 8, ParticpantId = 8 },
+            new Enrollment { SectionId = 9, ParticpantId = 9 },
             new Enrollment { SectionId = 10, ParticpantId = 10 }
         };
 

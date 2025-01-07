@@ -10,7 +10,7 @@
 
         public override string ToString()
         {
-            return $"{Id}  | {LName}, {FName} | Graduted on ({YearOfGraduation}) From {University}" +
+            return $"{Id}  ( {FName}, {LName} ) Graduted on ({YearOfGraduation}) From {University} " +
                 $"({(IsIntern ? "Internship" : "")})";
         }
     }

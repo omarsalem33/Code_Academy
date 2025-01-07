@@ -16,6 +16,7 @@ namespace CodeAcademy.Data
         public DbSet<MultipleChoiceQuiz> MultipleChoiceQuizes { get; set; }
         public DbSet<TrueAndFalseQuiz> TrueAndFalseQuizes { get; set; }
         public DbSet<Review> Reviews { get; set; } 
+        public DbSet<SectionWithDetails> SectionWithDetails { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -26,7 +27,8 @@ namespace CodeAcademy.Data
             var connectionString = config.GetSection("ConnectionStrings:DefaultConnection").Value;
 
             optionsBuilder.UseSqlServer(connectionString)// add log on console
-                .LogTo(Console.WriteLine,Microsoft.Extensions.Logging.LogLevel.Information);
+                .LogTo(Console.WriteLine,Microsoft.Extensions.Logging.LogLevel.Information)
+                ;
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
