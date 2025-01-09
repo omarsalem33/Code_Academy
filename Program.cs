@@ -1,9 +1,8 @@
 ﻿using CodeAcademy.Data;
 using CodeAcademy.Entities;
+using CodeAcademy.PartcipantOperation;
 using Microsoft.EntityFrameworkCore;
-using System.Buffers.Text;
-using static System.Collections.Specialized.BitVector32;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+using Microsoft.IdentityModel.Tokens;
 
 namespace CodeAcademy
 {
@@ -172,6 +171,9 @@ namespace CodeAcademy
             //}
             #endregion
 
+
+            var context = new AppDbContext();
+
             Console.WriteLine("______________________________________");
             Console.WriteLine("Welcome In Code Academy");
             Console.WriteLine("______________________________________");
@@ -195,169 +197,76 @@ namespace CodeAcademy
                 switch (choice) 
                 {
                     case '1':
-                        RetrieveAllStudents();
+                        var students = IndividualOperations.RetrieveAllStudents(context);
+                        if (students.IsNullOrEmpty())
+                            Console.WriteLine("There are no registered students");
+                        else
+                        {
+                            Console.WriteLine("All Students:");
+                            foreach (var student in students)
+                                Console.WriteLine(student);
+                        }
                         break;
+
                     case '2':
-                        RetrieveAllStudentsIsIntern();
+                        var studentIsIntern = IndividualOperations.RetrieveAllStudentsIsIntern(context);
+                        if(studentIsIntern.IsNullOrEmpty())
+                            Console.WriteLine("There are no Students Intern");
+                        else
+                        {
+                            Console.WriteLine("Students is Intern:");
+                            foreach (var student in studentIsIntern)
+                                Console.WriteLine(student);
+                        }
                         break;
+
                     case '3':
-                        SearchUsersbyName();
-                            break;
+                        Console.Write("Enter the First Name: ");
+                        var FName = Console.ReadLine();
+                        Console.Write("Enter the Last Name: ");
+                        var LName = Console.ReadLine();
+
+                        var studentByName = IndividualOperations.SearchUsersbyName(context , FName , LName);
+                        if(studentByName == null)
+                            Console.WriteLine("No student found with the specified name.");
+                        else
+                        {
+                            Console.Write("Student is found: ");
+                            Console.WriteLine(studentByName);
+                        }
+                        break;
+                    
                     case '4':
-                        SortingStudentsBasedOnGraduationYear();
+                        var StudentsBaseOnGraduatedyears = IndividualOperations.SortingStudentsBasedOnGraduationYear(context);
+                        if(StudentsBaseOnGraduatedyears is null)
+                            Console.WriteLine("There are no registered students");
+                        else
+                        {
+                            Console.WriteLine("All Students Based On Graduation Years:");
+                            foreach (var student in StudentsBaseOnGraduatedyears)
+                                Console.WriteLine(student);
+                        }
                         break;
+                    
                     case '5':
-                        NumberOfParticpants();
+                        var number = PartcipantOperations.NumberOfParticpants(context);
+                        Console.WriteLine(number);
                         break;
+                    
                     case '6':
-                        averageGraduationYearforIndividualParticipants();
+                        Console.WriteLine(IndividualOperations.averageGraduationYearforIndividualParticipants(context));
                         break;
+                    
                     case '7':
-                        RetrieveAllStudentsParticpantinSpecificSection();
-                        break;
+                         IndividualOperations.RetrieveAllStudentsParticpantinSpecificSection(context);
+                     break;
+                    
                     case '8':
-                        ParticipantsWithSections();
+                        IndividualOperations.ParticipantsWithSections();
                         break;
                     
                 }
-
             }
         }
-
-        private static void ParticipantsWithSections()
-        {
-            using (var _context = new AppDbContext()) 
-            {
-                var ParticipantsWithSections = _context.Particpants.AsNoTracking()
-                    .Join(_context.Enrollments.AsNoTracking(),
-                    p => p.Id,
-                    e => e.ParticpantId,
-                    (p,e) => new {p ,e}).Join(_context.Sections.AsNoTracking(),
-                    pe => pe.e.SectionId,
-                    s => s.Id,
-                    (pe , s) => new
-                    {
-                        Name = pe.p.FName + " " + pe.p.LName,
-                        SectionName = s.SectionName
-                    }).ToList();
-
-                ParticipantsWithSections.Print("Participants With Sections");
-            }
-        }
-
-        private static void RetrieveAllStudentsParticpantinSpecificSection()
-        {
-            Console.Write("Enter a Section Name: ");
-            var sectionName = (Console.ReadLine());
-
-            using (var _context = new AppDbContext()) 
-            {
-
-                var AllStudentInSpecificSection = _context.Set<Individual>()
-                   .SelectMany(x => x.Sections)
-                   .Where(x => x.SectionName == sectionName)
-                   .GroupBy(group => group.SectionName)
-                   .Select(a => new
-                   {
-                       sectionName = a.Key,
-                       Particpant = a.SelectMany(x => x.Participants)
-                       .Select(p=> new {
-                           p.Id,
-                           Name = p.FName + " " + p.LName
-
-                       }).ToList()
-
-                   }).ToList();
-
-                foreach (var section in AllStudentInSpecificSection)
-                {
-                    Console.WriteLine($"section: {section.sectionName}");
-                    Console.WriteLine("Participants");
-                    foreach(var Participant in section.Particpant)
-                        Console.WriteLine($"\t{(Participant.Id)}\t Name: {Participant.Name} ");
-                }
-            }
-
-        }
-
-        private static void averageGraduationYearforIndividualParticipants()
-        {
-            using (var _context = new AppDbContext()) 
-            {
-                var averageGraduationYear = _context.Set<Individual>()
-                    .Average(x=>x.YearOfGraduation);
-
-                Console.WriteLine($"The average graduation year for Individual participants is: {(int)averageGraduationYear}");
-            }
-        }
-
-        private static void NumberOfParticpants()
-        {
-            using (var _context = new AppDbContext()) 
-            {
-                var numOfParticpants = _context.Particpants.Count();
-                Console.WriteLine($"The number of Participents is : {numOfParticpants}");
-            }
-        }
-        
-        #region Query Data Using LINQ
-
-        private static void SortingStudentsBasedOnGraduationYear()
-        {
-            using (var _context = new AppDbContext()) {
-                var allStudents = _context.Set<Individual>()
-                    .OrderBy(x => x.YearOfGraduation).ToList();
-                allStudents.Print("Sorting Students Based On Graduation Year");
-            }
-            
-        }
-
-        private static void SearchUsersbyName()
-        {
-            Console.Write("Enter the First Name: ");
-            var FName = Console.ReadLine();
-            Console.Write("Enter the Last Name: ");
-            var LName = Console.ReadLine();
-
-            using (var _context = new AppDbContext())
-            {
-
-                var studentName = _context.Set<Individual>()
-                    .Where(x => x.FName == FName && x.LName == LName)
-                    .FirstOrDefault();
-               
-                if(studentName is null)
-                    Console.WriteLine("The student is not exist");
-                else
-                    Console.WriteLine($"{studentName.Id}  ( {studentName.FName}, {studentName.LName} ) " +
-                        $"Graduted on ({studentName.YearOfGraduation}) From {studentName.University} " +
-                        $"({(studentName.IsIntern ? "Internship" : "")})");
-
-            }
-        }
-
-        private static void RetrieveAllStudentsIsIntern()
-        {
-            using (var _context = new AppDbContext()) 
-            {
-                var studentIsIntern = _context.Set<Individual>()
-                    .Where(x => x.IsIntern)
-                    .ToList();
-
-                studentIsIntern.Print("All Student Is Intern");
-            }
-        }
-
-        private static void RetrieveAllStudents()
-        {
-            using (var _context = new AppDbContext())
-            {
-                var allStudent = _context.Set<Individual>().ToList();
-                allStudent.Print("All Students");
-            }
-        }
-        
-        #endregion
-
     }
 }
